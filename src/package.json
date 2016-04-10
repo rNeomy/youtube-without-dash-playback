@@ -1,7 +1,7 @@
 {
   "title": "YouTube without DASH Playback",
   "name": "iywdplayback",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn off DASH support from HTML5 video element. Enabling the extension causes YouTube (and other HTML5 video players) to fully load video files.",
   "main": "./lib/background.js",
   "author": "Richard Neomy",
@@ -18,5 +18,12 @@
     "value": false,
     "title": "Is disabling DASH enabled?",
     "hidden": true
+  },
+  {
+    "name": "faqs",
+    "type": "bool",
+    "value": true,
+    "title": "Open FAQs page on upgrade",
+    "description": "Open FAQs page on upgrade to notify about the latest changes"
   }]
 }

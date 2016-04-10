@@ -3,6 +3,8 @@
 var buttons = require('sdk/ui/button/action');
 var sp = require('sdk/simple-prefs');
 var preferences = require('sdk/preferences/service');
+var tabs = require('sdk/tabs');
+var self = require('sdk/self');
 
 var button;
 
@@ -38,5 +40,18 @@ handleClick();
 exports.onUnload = function (reason) {
   if (reason === 'uninstall' || reason === 'disable') {
     preferences.reset('media.mediasource.enabled');
+  }
+};
+
+// FAQs page
+exports.main = function (options) {
+  if (options.loadReason === 'install' || options.loadReason === 'startup') {
+    let version = sp.prefs.version;
+    if (self.version !== version && sp.prefs.faqs) {
+      tabs.open(
+        `http://firefox.add0n.com/no-dash-playback.html?version=${self.version}&type=${version ? 'upgrade' : 'install'}`
+      );
+      sp.prefs.version = self.version;
+    }
   }
 };
